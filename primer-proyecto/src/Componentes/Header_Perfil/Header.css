@@ -1,0 +1,73 @@
+header{
+    border-bottom: 1px solid #ECECEC;
+    background-color: white;
+    padding: 1.5%;
+    align-content: center;
+    height: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #020128;
+    font-size: 30px;
+    position: fixed;
+    z-index: 1000;
+    top:0;
+}
+.div_header{
+    display: grid;
+    grid-template-columns: 2fr 5fr 5fr;
+}
+
+.perfil_div{
+    display: flex;
+    grid-column: 3;
+    align-items: center;
+    justify-content: right;
+}
+
+.div_logo{
+    align-items: center;
+    display: flex;
+    grid-column: 1;
+}
+
+.foto_perfil{
+    margin-right: 10px;
+    margin-left: 10px;
+    background-position: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Nombre_perfil{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    align-items: center;
+    text-decoration: none;
+}
+
+.Nombre_perfil:hover{
+    text-decoration: underline;
+}
+
+.logo_img{
+    margin: 10px;
+    grid-column: 1;
+    background-image: url("https://images.vexels.com/media/users/3/224233/isolated/preview/d5ee0e9c87bb54cf867d7fb89c4570b8-logotipo-de-educacion-en-linea.png");
+    background-size: cover;
+    height: 80px;
+    width: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.h1_header{
+    margin-top: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    margin-left: 0px;
+    grid-column: 1;
+    justify-content: left;
+}
+

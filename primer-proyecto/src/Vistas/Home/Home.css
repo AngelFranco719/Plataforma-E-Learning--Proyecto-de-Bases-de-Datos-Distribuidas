@@ -1,0 +1,23 @@
+.div_tarjetas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    width: fit-content;
+}
+.div_titulo{
+    margin-top: 70px;
+    margin-bottom: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.h1_bienvenida{
+    margin-top: 50px;
+}
+
+.div_global{
+    display: block;
+    justify-content: center;
+}

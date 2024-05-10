@@ -1,0 +1,92 @@
+h1,h2{
+    font-size: 2em;
+    line-height: 1;
+    font-weight: lighter;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #020128;
+  }
+  h2{
+    font-size: 2.0em;
+  }
+  
+  .Etiqueta{
+    background-color: black;
+    height: 30px;
+    margin-bottom: 0px;
+    width: fit-content;
+    padding-right: 5%;
+    padding-left: 5%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    border-radius: 40px;
+    opacity: 70%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 12px;
+  }
+  
+  .tarjeta{
+    min-width: 320px;
+    max-width: 320px;
+    min-height: 360px;
+    margin: 2%;
+    display: grid;
+    background-color: white;
+    grid-template-rows: auto 2fr;
+    border-radius: 5%;
+    box-shadow: 2px 5px 10px #D5D5D5;
+  }
+  
+  .item{
+    padding: 10%;
+    flex: 1;
+    margin: 5px; 
+    border-radius: 2%;
+    height: 200px;
+    background-color: var(--color_dinamico);
+    display: grid;
+    grid-template-rows: 1fl 1fl 1fl;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .informacion_cursos{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 5%;
+    line-height: 100%;
+  }
+  .titulo_item{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .boton_curso{
+    display: flex;
+    background-color: black;
+    height: 40px;
+    width: 80px;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    cursor: pointer;
+    margin-top: 8%;
+  }
+  
+  .foto_perfil{
+    background-size: cover;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+  }
+
+  .navlink_boton{
+    color: white;
+    text-decoration: none;
+  }
+
+  .navlink_boton:hover{
+    text-decoration: underline;
+  }
