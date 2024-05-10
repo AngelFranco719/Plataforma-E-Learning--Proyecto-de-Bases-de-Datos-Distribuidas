@@ -2,7 +2,7 @@
   "name": "primer-proyecto",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "common.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mysql": "^2.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0"
   },
   "devDependencies": {
+    "@types/mysql": "^2.15.26",
+    "@types/node": "^20.12.11",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",
@@ -26,5 +29,10 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "index.html",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

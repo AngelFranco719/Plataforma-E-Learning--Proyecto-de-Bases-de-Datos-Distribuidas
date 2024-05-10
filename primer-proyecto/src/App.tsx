@@ -5,7 +5,6 @@ import Home from './Vistas/Home/Home'
 import Perfil from './Vistas/Perfil'
 import Header from './Componentes/Header_Perfil/Header';
 import Crucigrama from './Vistas/Crucigrama/Crucigrama';
-
 function App() {
   return (
    <>
