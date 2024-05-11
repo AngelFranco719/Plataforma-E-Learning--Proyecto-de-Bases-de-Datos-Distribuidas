@@ -1,0 +1,52 @@
+#div_login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: aquamarine;
+    margin: -10px;
+}
+#div_login_content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 5px 10px 50px #373737;
+}
+#h1_titulo_login{
+    font-size: 50px;
+    margin-bottom: 35px;
+}
+#h2_login_sesion{
+    font-size: 30px;
+}
+.input_login{
+    width: 300px;
+    height: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    border-radius: 10px;
+    border-color: #C6C6C6;
+    border-style: solid;
+    margin-bottom: 30px;
+    text-align: center;
+}
+#Button_ingresar{
+    width: 200px;
+    height: 50px;
+    background-color: #FF6645;
+    border-color: transparent;
+    border-radius: 30px;
+    font-size: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    cursor: pointer;
+}
+#Button_ingresar:hover{
+    box-shadow: 2px 2px 5px #BFBFBF ;
+}

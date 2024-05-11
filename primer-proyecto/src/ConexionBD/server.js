@@ -10,13 +10,17 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/api/Perfiles',(req,res)=>{
-    connection.query("SELECT *FROM Perfil",(error,results)=>{
-        if(error){
-            res.status(500).json({error});
-            return;
-        }
-        res.json(results);
-    });
+    if(req.query.email && req.query.contraseña){
+        const email=req.query.email;
+        const contraseña=req.query.contraseña;
+        connection.query("Select * from Perfil where Email=? and Contraseña=?",[email, contraseña], (err, results)=>{
+            if(err){
+                res.status(500).json({ err });
+                return;
+            }
+            res.json(results); 
+        })
+    }
 })
 
 app.listen(PUERTO, ()=>{
