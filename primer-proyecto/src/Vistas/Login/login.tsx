@@ -1,8 +1,16 @@
 import React, { useRef, useState } from "react";
 import "./login.css"
 import axios from "axios";
+import { Crear_Sesion_Perfil } from "../../ConexionBD/Definiciones";
 
-export default function login({setSesion}:{setSesion: React.Dispatch<React.SetStateAction<boolean>>}){
+interface login_props
+{
+    setSesion: React.Dispatch<React.SetStateAction<boolean>>,
+    setPerfilIniciado: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function login({setSesion, setPerfilIniciado}:login_props){
+
 const [iniciado,setIniciado]=useState<boolean>(false);
 const email_ref=useRef<HTMLInputElement>(null);
 const contraseña_ref=useRef<HTMLInputElement>(null);
@@ -11,16 +19,13 @@ const iniciar_sesion=()=>{
     const contraseña=contraseña_ref.current?.value;
     console.log(`Email: ${email} Contraseña: ${contraseña}`);
     axios.get(`/api/Perfiles?email=${email}&contraseña=${contraseña}`).then((respuesta)=>{
-        console.log(respuesta.data);
+        Crear_Sesion_Perfil(respuesta);
+        setPerfilIniciado(true);
     })
     setSesion(true);
     setIniciado(true);
 };
 
-if(iniciado){
-    return(<></>);
-}
-else{
     return(
         <>
         <div id="div_login">
@@ -34,5 +39,4 @@ else{
         </div>
         </>
     );
-}
 }

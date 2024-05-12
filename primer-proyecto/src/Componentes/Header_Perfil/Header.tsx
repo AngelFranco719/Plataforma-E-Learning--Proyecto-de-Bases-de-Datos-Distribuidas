@@ -1,13 +1,14 @@
 import "./Header.css"
-import {Perfil} from "../../Objetos Temporales/Objetos_Perfil"
-import Devolver_Perfiles from "../../Objetos Temporales/Objetos_Perfil"
+
 import { CSSProperties } from "react";
 import { NavLink } from "react-router-dom";
+import { Perfil_BD } from "../../ConexionBD/Definiciones";
 
+interface props_header{
+    perfil: Perfil_BD,
+}
 
-const perfiles:Perfil[]=Devolver_Perfiles(); 
-
-export default function Header(){
+export default function Header({perfil} : props_header){
     return(
         <>
         <header className="div_header">
@@ -17,9 +18,9 @@ export default function Header(){
             </div>
             <div className="perfil_div">
                 <h2>
-                    <NavLink className="Nombre_perfil" to={"/Perfil"}>{perfiles[0].name}</NavLink>
+                    <NavLink className="Nombre_perfil" to={"/Perfil"}>{perfil.ID_Alumno}</NavLink>
                 </h2>
-                <div className="foto_perfil" style={{backgroundImage: `url(${perfiles[0].foto_perfil})`} as CSSProperties}></div> 
+                <div className="foto_perfil" style={{backgroundImage: `url(${perfil.Foto_Perfil})`} as CSSProperties}></div> 
             </div>
         </header>
         </>

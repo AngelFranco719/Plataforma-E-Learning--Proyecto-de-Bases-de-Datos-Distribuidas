@@ -1,33 +1,30 @@
 import  {CSSProperties} from "react";
 import "./Tarjetas.css"
 import { NavLink } from "react-router-dom";
+import { Curso, Perfil_BD} from "../../ConexionBD/Definiciones";
 
-interface Curso{
-    name: string;
-    author: string;
-    color: string;
-    imagen: URL;
-    semestre: string; 
-    carrera: string;
+interface props{
+    curso:Curso | undefined,
+    color:string,
+    perfil: Perfil_BD
 }
 
-export default function tarjeta({curso}:{curso : Curso}){
-
+export default function tarjeta({curso, color, perfil}:props){
     return(
         <>
         <div className="tarjeta">
-            <div className="item" style={{'--color_dinamico':curso.color} as CSSProperties} >
+            <div className="item" style={{'--color_dinamico':color} as CSSProperties} >
                 <div className="Etiqueta">
-                   {curso.carrera}
+                   {curso?.Licenciatura}
                 </div>
-                <h1>{curso.name}</h1>
+                <h1>{curso?.Nombre}</h1>
                 <div className='Etiqueta'>
-                    {curso.semestre}
+                    {curso?.Semestre}
                 </div>
             </div>
             <div className="informacion_cursos">
-                <div className="foto_perfil" style={{backgroundImage: `url(${curso.imagen})`}}/>
-                <p className="titulo_item">{curso.author}</p>
+                <div className="foto_perfil" style={{backgroundImage: `url(${perfil.Foto_Perfil})`}}/>
+                <p className="titulo_item">{curso?.Autor}</p>
                 <div className="boton_curso">
                     <NavLink className={"navlink_boton"} to={"/Curso"}>Entrar</NavLink>
                 </div>
