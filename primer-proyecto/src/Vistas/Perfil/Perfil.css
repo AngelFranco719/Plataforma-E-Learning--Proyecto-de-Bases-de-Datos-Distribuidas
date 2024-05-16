@@ -1,0 +1,8 @@
+.div_perfil{
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+    margin-left: 50px;
+    height: 100%;
+    width: 95%;
+}

@@ -1,0 +1,128 @@
+#Informacion_Perfil{
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 20px;
+    height: fit-content;
+    width: 1000px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D0D0D0;
+    border-radius: 30px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+#Informacion_General{
+    display: block;
+}
+
+#Foto_Perfil{
+    grid-column: 1;
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+#Informacion_Especifica{
+    display: block;
+    grid-column: 2;
+    height: 100%;
+    width: 100%;
+}
+#Nombre{
+    font-weight: bold;
+}
+#Tipo_Perfil{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    margin-left: 10px;
+    margin-top: -10px;
+    font-weight: lighter;
+}
+.Etiqueta_Header{
+    margin-top: -5px;
+    background-color: #FA4A27;
+    height: 30px;
+    margin-bottom: 0px;
+    width: fit-content;
+    padding-right: 2%;
+    padding-left: 2%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    border-radius: 40px;
+    opacity: 70%;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    margin-right: 10px;
+}
+#Biografia{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: -10px;
+    font-size: 18px;
+}
+#Etiquetas_Div{
+    display: flex;
+}
+#Boton_Div_editar{
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #BBBBBB;
+    margin-top: 20px;
+    border-width: 1px;
+    margin-right: 10px;
+    box-shadow: 1px 1px 1px #BBBBBB;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #717171;
+}
+
+#Boton_Div_mensaje{
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border-width: 1px;
+    background-color: #1747BF;
+    box-shadow: 1px 1px 1px #BBBBBB;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    opacity: 90%;
+}
+
+
+#Boton_Div_editar:hover{
+    box-shadow: 1px 1px 5px #BBBBBB;
+    color: black; 
+}
+#Botones_div{
+    display: flex;
+}
+
+.div_informacion{
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    margin-bottom: -25px;
+}
+.Titulo_informacion{
+    font-size: 20px;
+}
+.Contenido_informacion{
+    color: #636363;
+    margin-left: 10px;
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

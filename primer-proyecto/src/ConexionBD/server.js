@@ -75,6 +75,32 @@ app.get('/api/Profesor',(req,res)=>{
     }
 })
 
+app.get('/api/Perfil_Alumno',(req,res)=>{
+    if(req.query.id_perfil){
+        const id_perfil=req.query.id_perfil;
+        connection.query("SELECT *FROM Perfil_Alumno WHERE id_perfil=?",[id_perfil],(err, results)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(results);
+        })
+    }
+})
+
+app.get('/api/Perfil_Profesor',(req,res)=>{
+    if(req.query.id_perfil){
+        const id_perfil=req.query.id_perfil;
+        connection.query("SELECT *FROM Perfil_Profesor WHERE id_perfil=?",[id_perfil],(err,results)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(results);
+        });
+    }
+})
+
 app.listen(PUERTO, ()=>{
     console.log(`SERVIDOR CORRIENDO EN EL PUERTO: ${PUERTO}` );
 });

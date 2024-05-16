@@ -21,6 +21,35 @@ export interface Alumno{
     grupo: string
 }
 
+export interface Perfil_Alumno{
+    ID_Perfil:number,
+    Email: string,
+    Contraseña: string, 
+    Tipo_Perfil: string, 
+    Biografia: string,
+    Foto_Perfil: string, 
+    Nombre:string,
+    Edad:number, 
+    Institucion:string,
+    Carrera:string,
+    Semestre: string,
+    Grupo: string
+}
+
+export interface Perfil_Profesor{
+    ID_Perfil: number,
+    Email: string,
+    Contraseña: string, 
+    Tipo_Perfil: string, 
+    Biografia: string,
+    Foto_Perfil: string, 
+    Nombre:string,
+    Institucion:string,
+    NivelAcademico:string,
+    Licenciatura:string,
+    Especializacion:string
+}
+
 export interface Curso{
     ID_Curso: number,
     Nombre:string,

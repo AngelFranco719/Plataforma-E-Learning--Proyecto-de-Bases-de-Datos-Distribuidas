@@ -38,7 +38,6 @@ export default function Home(prop: Perfil_BD){
 
     useEffect(()=>{
         if(sesionPerfilCurso){
-            console.log(sesionPerfilCurso);
             const PromesasCursos=sesionPerfilCurso.map((curso)=>{
                 return axios.get(`/api/Cursos?id_curso=${curso.ID_Curso}`).then(respuesta => respuesta.data);
             })
@@ -51,14 +50,6 @@ export default function Home(prop: Perfil_BD){
         }
         
     },[sesionPerfilCurso])
-
-    useEffect(()=>{
-        if(sesionCursos){
-            console.log(sesionCursos[0][0]);
-            console.log(sesionCursos[1][0]);
-        }
-    },[sesionCursos])
-
     return(
         <>
         <div className="div_global">
