@@ -50,6 +50,24 @@ export interface Perfil_Profesor{
     Especializacion:string
 }
 
+export interface Publicacion{
+    ID_Publicacion:number,
+    Titulo: string,
+    Categoria:string,
+    Contenido: string,
+    ID_PerfilCurso: number
+}
+
+export interface Publicacion_Autor{
+    ID_Publicacion:number,
+    ID_Curso: number,
+    Titulo: string,
+    Categoria:string,
+    Contenido: string,
+    Foto_Perfil: string,
+    Nombre:string
+}
+
 export interface Curso{
     ID_Curso: number,
     Nombre:string,

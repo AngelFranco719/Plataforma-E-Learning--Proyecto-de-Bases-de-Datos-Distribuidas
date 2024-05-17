@@ -101,6 +101,18 @@ app.get('/api/Perfil_Profesor',(req,res)=>{
     }
 })
 
+app.get('/api/Publicacion_Autor',(req, res)=>{
+    if(req.query.id_curso){
+        const id_curso=req.query.id_curso;
+        connection.query("SELECT *FROM Publicacion_autor WHERE ID_Curso=? order by ID_Publicacion DESC",[id_curso],(err,results)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(results);
+        })
+    }
+})
 app.listen(PUERTO, ()=>{
     console.log(`SERVIDOR CORRIENDO EN EL PUERTO: ${PUERTO}` );
 });

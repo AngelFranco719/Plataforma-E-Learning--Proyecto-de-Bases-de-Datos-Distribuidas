@@ -6,10 +6,15 @@ import { Curso, Perfil_BD} from "../../ConexionBD/Definiciones";
 interface props{
     curso:Curso | undefined,
     color:string,
-    perfil: Perfil_BD
+    perfil: Perfil_BD,
+    setCurso: React.Dispatch<React.SetStateAction<Curso | undefined>>
 }
 
-export default function tarjeta({curso, color, perfil}:props){
+export default function tarjeta({curso, color, perfil, setCurso}:props){
+    const abrir_vista_curso=()=>{
+        setCurso(curso);
+    }
+
     return(
         <>
         <div className="tarjeta">
@@ -26,7 +31,7 @@ export default function tarjeta({curso, color, perfil}:props){
                 <div className="foto_perfil" style={{backgroundImage: `url(${perfil.Foto_Perfil})`}}/>
                 <p className="titulo_item">{curso?.Autor}</p>
                 <div className="boton_curso">
-                    <NavLink className={"navlink_boton"} to={"/Curso"}>Entrar</NavLink>
+                    <NavLink className={"navlink_boton"} to={"/Curso"} onClick={abrir_vista_curso}>Entrar</NavLink>
                 </div>
             </div> 
         </div>

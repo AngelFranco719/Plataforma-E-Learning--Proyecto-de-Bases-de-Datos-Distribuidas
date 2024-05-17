@@ -1,0 +1,106 @@
+#Div_Titulo{
+    grid-column: 1;
+    padding-top: 20px;
+    display: block;
+    align-items: start;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 1000px;
+    height: 250px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 5px 5px #E2E2E2;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #CACACA;
+}
+
+#Div_Principal{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.Marcatextos{ 
+    margin: 0 auto;
+    margin-top: 20px;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    width: fit-content;
+}
+#Descripcion_Curso{
+    font-size: 23px;
+    font-weight:200;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#Div_Etiquetas{
+    display: flex;
+    justify-content: center;
+}
+.Etiqueta_Curso_Alumno{
+    background-color: black;
+    height: 30px;
+    margin-bottom: 0px;
+    width: fit-content;
+    padding-right: 2%;
+    padding-left: 2%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    border-radius: 40px;
+    opacity: 70%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 20px;
+}
+#Titulo_Curso{
+    color: #525252;
+    font-size: 30px;
+    margin: 0 auto;
+    text-align: center;
+}
+#Div_Publicaciones{
+    grid-column: 1;
+    display: block;
+    background-color: white;
+    height: fit-content;
+    width: 97%;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#Titulo_Publicaciones{
+    text-align: center;
+}
+#Div_Actividades{
+    margin-right: 5px;
+    position: fixed;
+    justify-self: end;
+    width: 300px;
+    grid-column: 2;
+    grid-row: 1;
+    height: 568px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #CACACA;
+    background-color: white;
+}
+#Titulo_Actividades{
+    text-align: center;
+    background-color: aqua;
+    margin-left: 40px;
+    margin-right: 40px;
+    border-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#Fecha{
+    margin-top: -15px;
+    text-align: center;
+    font-size: 25px;
+}

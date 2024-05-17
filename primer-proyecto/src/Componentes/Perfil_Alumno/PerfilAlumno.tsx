@@ -27,7 +27,7 @@ export default function PerfilAlumno({perfilAlumno}:props){
                         Editar Perfil
                     </div>
                     <div id="Boton_Div_mensaje">
-                        Activo
+                        Inscrito
                     </div>
                 </div>
             </div>

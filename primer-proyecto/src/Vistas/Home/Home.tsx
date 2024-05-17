@@ -5,22 +5,26 @@ import { Alumno, Perfil_BD } from "../../ConexionBD/Definiciones"
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-export default function Home(prop: Perfil_BD){
+interface prop{
+    perfilActual: Perfil_BD,
+    setCurso: React.Dispatch<React.SetStateAction<Curso | undefined>>
+}
+
+export default function Home({perfilActual, setCurso}:prop){
     const [sesionAlumno, setAlumno]=useState<Alumno[] | undefined>();
     const [sesionProfesor, setProfesor]=useState<Profesor[] | undefined>();
     const [sesionPerfilCurso, setPerfilCurso]=useState<Perfil_Curso[]>(); 
     const [sesionCursos, setCursos]=useState<Curso[][]>(); 
-    const Perfil:Perfil_BD[]= Array.isArray(prop)? prop[0] : prop; 
     const colores:string[]=["#FFB9B9","#A4FFC3","#A4F5FF","#EAA4FF","#FFDBA4"];
-
+    const primerPerfil=Array.isArray(perfilActual)? perfilActual[0] : perfilActual;
     useEffect(()=>{
-        if(Perfil[0].Tipo_Perfil=="Alumno"){
-            axios.get(`/api/Alumno?id_alumno=${Perfil[0].ID_Alumno}`).then((resultado)=>{
+        if(primerPerfil.Tipo_Perfil=="Alumno"){
+            axios.get(`/api/Alumno?id_alumno=${primerPerfil.ID_Alumno}`).then((resultado)=>{
                 setAlumno(resultado.data);
             })
         }
         else{
-            axios.get(`/api/Profesor?id_profesor=${Perfil[0].ID_Profesor}`).then((resultado)=>{
+            axios.get(`/api/Profesor?id_profesor=${primerPerfil.ID_Profesor}`).then((resultado)=>{
                 setProfesor(resultado.data);
             })
         }
@@ -29,7 +33,7 @@ export default function Home(prop: Perfil_BD){
     useEffect(()=>{
         if(sesionAlumno || sesionProfesor){
             axios.get(`/api/Perfil-Curso?id_perfil=${
-                Perfil[0].ID_Perfil
+                primerPerfil.ID_Perfil
             }`).then((resultado)=>{
                 setPerfilCurso(resultado.data);
             })
@@ -61,7 +65,7 @@ export default function Home(prop: Perfil_BD){
             {
                sesionPerfilCurso?.map((curso,index)=>{
                 return(
-                    <Tarjeta key={index} curso={sesionCursos && sesionCursos[index][0]} color={colores[Math.floor(Math.random()*colores.length)]} perfil={Perfil[0]} />
+                    <Tarjeta key={index} setCurso={setCurso} curso={sesionCursos && sesionCursos[index][0]} color={colores[Math.floor(Math.random()*colores.length)]} perfil={primerPerfil} />
                 );
                })
             }
