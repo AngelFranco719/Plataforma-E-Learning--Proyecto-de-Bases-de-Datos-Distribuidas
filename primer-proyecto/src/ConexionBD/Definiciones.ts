@@ -90,6 +90,17 @@ export interface Perfil_Curso{
     ID_Equipo:number
 }
 
+export interface Actividad{
+    ID_Actividad: number,
+    ID_Curso: number,
+    Titulo: string,
+    Fecha_Publicacion:string,
+    Fecha_limite:string,
+    Descripcion: string,
+    Dificultad: string,
+    Tipo: string
+}
+
 export interface Profesor{
     ID_Profesor:number,
     Nombre:string,

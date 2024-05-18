@@ -8,7 +8,7 @@ import Crucigrama from './Vistas/Crucigrama/Crucigrama';
 import { useEffect, useState } from 'react';
 import Login from './Vistas/Login/login'
 import { Curso, Perfil_Actual, Perfil_BD } from './ConexionBD/Definiciones';
-import Publicaciones from './Componentes/Publicacion/Publicaciones';
+import Actividad from './Vistas/Actividad/Actividad';
 function App() {
   const[sesion, setSesion]=useState<boolean>(false);
   const[perfil_iniciado, setPerfilIniciado]=useState<boolean>(false);
@@ -35,6 +35,7 @@ function App() {
           )}
         {sesion && sesionActual && <Route path='/Perfil' element={<Perfil perfil={sesionActual}></Perfil>}/> }
         {sesion && sesionActual && cursoActual &&<Route path='/Curso' element={<Curso_Vista cursoActual={cursoActual}></Curso_Vista>}/>}
+        {sesion && sesionActual && cursoActual && <Route path='/Actividad' Component={Actividad}/>}
         <Route path='/Crucigrama' Component={Crucigrama}/>
       </Routes>
     </Router>

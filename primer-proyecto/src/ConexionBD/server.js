@@ -101,6 +101,19 @@ app.get('/api/Perfil_Profesor',(req,res)=>{
     }
 })
 
+app.get('/api/Actividad',(req,res)=>{
+    if(req.query.id_curso){
+        const id_curso=req.query.id_curso;
+        connection.query("SELECT *FROM Actividad WHERE ID_Curso=?",[id_curso], (err,results)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(results);
+        })
+    }
+})
+
 app.get('/api/Publicacion_Autor',(req, res)=>{
     if(req.query.id_curso){
         const id_curso=req.query.id_curso;

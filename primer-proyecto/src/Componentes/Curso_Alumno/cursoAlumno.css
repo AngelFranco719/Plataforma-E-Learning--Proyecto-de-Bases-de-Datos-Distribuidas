@@ -77,6 +77,7 @@
     text-align: center;
 }
 #Div_Actividades{
+    display: block;
     margin-right: 5px;
     position: fixed;
     justify-self: end;
@@ -89,6 +90,7 @@
     border-width: 1px;
     border-color: #CACACA;
     background-color: white;
+    padding-left: 10px;
 }
 #Titulo_Actividades{
     text-align: center;
@@ -100,7 +102,20 @@
     padding-bottom: 5px;
 }
 #Fecha{
+    background-color: white;
     margin-top: -15px;
     text-align: center;
     font-size: 25px;
+}
+.Nombre_Actividad{
+
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    color: black;
+    text-decoration:none;
+}
+.Nombre_Actividad:hover{
+    text-decoration: underline;
+    text-decoration-color: blue;
 }

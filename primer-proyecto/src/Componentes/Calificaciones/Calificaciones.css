@@ -1,0 +1,64 @@
+#Columna2{
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 30px;
+    border-color: #cacaca;
+}
+
+#Div_Calificacion_Principal{
+    margin: 0 auto;
+    text-align: center;
+}
+#Titulo_Calificacion{
+    margin: 30px auto;
+    border-width: 1px;
+    padding: 10px;
+    background-color: #01DA4A;
+    border-radius: 20px;
+    color: white;
+    width: fit-content;
+}
+#Status{
+    color: #EE0000;
+    margin-top: -10px;
+    font-size: 27px;
+}
+#Div_Horizontal{
+    display: flex;
+
+}
+.Asignacion{
+    margin: 0 auto;
+    text-align: center;
+
+    font-size: 20px;
+    width: fit-content;
+}
+#Calificacion{
+    margin: 0 auto;
+    margin-top: 50px;
+    border-width: 1px;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    background-color: #1FCB00;
+    width: fit-content;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+}
+#Retroalimentacion_Titulo{
+    margin-top: 40px;
+    font-size: 25px;
+}
+#Retroalimentacion{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+}

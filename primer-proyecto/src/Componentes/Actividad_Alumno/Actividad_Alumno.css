@@ -1,0 +1,101 @@
+#Actividad_Titulo{
+    color: #FF3F2C;
+    grid-column: 1;
+    text-decoration: underline;
+    text-decoration-thickness:3px ;
+    text-decoration-color: #38B4FF;
+    text-align: center;
+}
+#Div_Actividad_Componente{
+    display: grid;
+    grid-template-columns: 2fr 1fr;   
+}
+
+#Div_Columna1{
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 20px;
+
+}
+
+#Nombre_Actividad{
+    grid-column: 1;
+    text-align: center;
+    margin-top: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.Etiqueta_Categoria_Actividad{
+    background-color: #FF3B01;
+    height: 30px;
+    margin-bottom: 0px;
+    width: fit-content;
+    padding-right: 2%;
+    padding-left: 2%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    border-radius: 40px;
+    opacity: 70%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 0px;
+    margin-left: 10px;
+}
+#Div_Actividad_Informacion{
+    align-items: center;
+    justify-items: center;
+    border-top-style:solid ;
+    border-color: #9523D2;
+    margin-top: 30px;
+    grid-column: 1;
+    padding-top: 30px;
+}
+#Actividad_Informacion{
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 25px; 
+   margin-left: 80px;
+}
+.Titulos_Actividad{
+    margin-bottom: -10px;
+    margin-left: 80px;
+}
+.Div_Etiquetas{
+    display: flex;
+    justify-content: center;
+    width: 850px;
+}
+
+#Fecha{
+    background-color: black;
+    font-size: 15px;
+    margin-left: 20px;
+    margin-top: 0px;
+}
+#Boton_Iniciar{
+    color: white;
+    background-color: #E21F5D;
+    margin: 0 auto;
+    align-content: center;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 25px;
+    grid-column: 1;
+    justify-self: center;
+    margin-top: 50px;
+    width: 300px;
+    height: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+#Boton_Iniciar:hover{
+    box-shadow: 0px 5px 10px #CACACA;
+}
+
+#Div_Calificacion{
+    grid-column: 2;
+}
