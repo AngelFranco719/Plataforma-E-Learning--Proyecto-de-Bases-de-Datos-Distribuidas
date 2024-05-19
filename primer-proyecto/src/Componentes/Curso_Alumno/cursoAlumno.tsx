@@ -6,10 +6,11 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 interface props{
-    curso: Curso
+    curso: Curso,
+    setActividad: React.Dispatch<React.SetStateAction<Actividad| undefined>>
 }
 
-export default function cursoAlumno({curso}: props){
+export default function cursoAlumno({curso, setActividad}: props){
     const [publicaciones, setPublicaciones]=useState<Publicacion_Autor[] | undefined>();
     const [actividades, setActividades]=useState<Actividad[] | undefined>();
     const colores:string[][]=[
@@ -30,7 +31,10 @@ export default function cursoAlumno({curso}: props){
         })
     },[])
 
-    console.log("Curso: "+curso.ID_Curso)
+    const conseguirActividad=(actividadActual:Actividad)=>{
+        setActividad(actividadActual);
+        console.log(actividadActual);
+    }
 
     return(
         <>
@@ -58,7 +62,7 @@ export default function cursoAlumno({curso}: props){
                     {actividades? actividades.map((actividad)=>{
                         return(
                             <div key={actividad.ID_Actividad} style={{marginTop: "10px"} as CSSProperties}>
-                                <NavLink to={"/Actividad"} className="Nombre_Actividad">{actividad.Titulo}.</NavLink>
+                                <NavLink to={"/Actividad"} className="Nombre_Actividad" onClick={()=>conseguirActividad(actividad)}>{actividad.Titulo}.</NavLink>
                                 <br></br>
                             </div>    
                         )

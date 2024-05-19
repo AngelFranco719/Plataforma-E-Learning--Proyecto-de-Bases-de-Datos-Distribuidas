@@ -7,13 +7,15 @@ import Header from './Componentes/Header_Perfil/Header';
 import Crucigrama from './Vistas/Crucigrama/Crucigrama';
 import { useEffect, useState } from 'react';
 import Login from './Vistas/Login/login'
-import { Curso, Perfil_Actual, Perfil_BD } from './ConexionBD/Definiciones';
-import Actividad from './Vistas/Actividad/Actividad';
+import { Actividad, Curso, Perfil_Actual, Perfil_BD } from './ConexionBD/Definiciones';
+import ActividadActual from './Vistas/Actividad/ActividadActual';
 function App() {
   const[sesion, setSesion]=useState<boolean>(false);
   const[perfil_iniciado, setPerfilIniciado]=useState<boolean>(false);
   const[sesionActual, setSesionActual]=useState<Perfil_BD | null>(null);
   const[cursoActual, setCurso]=useState<Curso | undefined>();
+  const[actividadActual, setActividad]=useState<Actividad | undefined>(); 
+
   useEffect(()=>{
     if(perfil_iniciado){
       setSesionActual(Perfil_Actual);
@@ -21,8 +23,9 @@ function App() {
   },[perfil_iniciado]);
 
   useEffect(()=>{
-    console.log(cursoActual);
-  },[cursoActual])
+    console.log(actividadActual);
+  },[actividadActual])
+
   return (
    <>
     <Router>
@@ -34,8 +37,8 @@ function App() {
             <Route path="/" element={<Login setSesion={setSesion} setPerfilIniciado={setPerfilIniciado} />} />
           )}
         {sesion && sesionActual && <Route path='/Perfil' element={<Perfil perfil={sesionActual}></Perfil>}/> }
-        {sesion && sesionActual && cursoActual &&<Route path='/Curso' element={<Curso_Vista cursoActual={cursoActual}></Curso_Vista>}/>}
-        {sesion && sesionActual && cursoActual && <Route path='/Actividad' Component={Actividad}/>}
+        {sesion && sesionActual && cursoActual &&<Route path='/Curso' element={<Curso_Vista cursoActual={cursoActual} setActividad={setActividad}></Curso_Vista>}/>}
+        {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Actividad' element={<ActividadActual actividad={actividadActual}></ActividadActual>}/>}
         <Route path='/Crucigrama' Component={Crucigrama}/>
       </Routes>
     </Router>
