@@ -21,6 +21,15 @@ app.get('/api/Perfiles',(req,res)=>{
             }
             res.json(results); 
         })
+    }else if(req.query.id_perfil){
+        const id_perfil=req.query.id_perfil;
+        connection.query("SELECT *FROM Perfil WHERE ID_Perfil=?",[id_perfil],(err, resultado)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(resultado);
+        })
     }
 })
 
@@ -159,6 +168,19 @@ app.post('/api/Comentario',(req, res)=>{
             console.log("Insert creado con exito.")
         }
         res.json(resultados);
+    });
+})
+
+app.post('/api/Publicacion',(req, res)=>{
+    const {Titulo, Contenido, Categoria, ID_PerfilCurso}=req.body;
+    connection.query("INSERT INTO Publicación (Titulo, Contenido, Categoria, ID_PerfilCurso) VALUES (?,?,?,?)",[Titulo, Contenido, Categoria, ID_PerfilCurso], (error,resultado)=>{
+        if(error){
+            return res.status(500).json({error});
+        }
+        else{
+            console.log("Insert creado con exito.")
+        }
+        res.json(resultado);
     });
 })
 

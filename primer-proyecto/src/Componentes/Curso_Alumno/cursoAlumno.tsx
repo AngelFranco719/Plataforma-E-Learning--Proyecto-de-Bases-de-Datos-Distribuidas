@@ -4,6 +4,7 @@ import "./cursoAlumno.css"
 import Publicaciones from "../Publicacion/Publicaciones";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import CrearPublicacion from "../Crear_Publicacion/Crear_Publicacion";
 
 interface props{
     curso: Curso,
@@ -36,6 +37,8 @@ export default function cursoAlumno({curso, setActividad, perfilActual}: props){
         setActividad(actividadActual);
     }
 
+    console.log(primerPerfil);
+
     return(
         <>
         <div id="Div_Principal">
@@ -51,6 +54,7 @@ export default function cursoAlumno({curso, setActividad, perfilActual}: props){
                 </div>
                 <div id="Div_Publicaciones">
                     <h2 id="Titulo_Publicaciones">Publicaciones del Curso:</h2>
+                    {primerPerfil ? <CrearPublicacion usuario={primerPerfil}></CrearPublicacion> : undefined}
                     {publicaciones ? publicaciones.map((publicacion)=>{
                         return(
                             <Publicaciones key={publicacion.ID_Publicacion} publicacion={publicacion} perfilActual={primerPerfil}></Publicaciones>

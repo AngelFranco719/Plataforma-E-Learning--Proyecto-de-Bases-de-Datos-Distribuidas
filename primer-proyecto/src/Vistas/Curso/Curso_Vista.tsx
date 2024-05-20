@@ -11,18 +11,17 @@ interface prop{
 }
 
 export default function Curso_Vista({cursoActual, setActividad, perfilActual}:prop){
-    const [perfil_cursoActual, setPerfil_CursoActual]=useState<Perfil_Curso>();
+    const [perfil_cursoActual, setPerfil_CursoActual]=useState<Perfil_Curso[]>();
     const primerPerfil= Array.isArray(perfilActual)? perfilActual[0] : perfilActual;
-
     useEffect(()=>{
         axios.get(`/api/Perfil-Curso?id_perfil=${primerPerfil.ID_Perfil}&&id_curso=${cursoActual.ID_Curso}`).then((resultado)=>{
             setPerfil_CursoActual(resultado.data);
         })
     },[])
-
+    
     return(
         <div id="Div_Curso">
-            <CursoAlumno curso={cursoActual} setActividad={setActividad} perfilActual={perfil_cursoActual? perfil_cursoActual : undefined}></CursoAlumno>
+            <CursoAlumno curso={cursoActual} setActividad={setActividad} perfilActual={perfil_cursoActual? perfil_cursoActual[0] : undefined}></CursoAlumno>
         </div>
     )
 }

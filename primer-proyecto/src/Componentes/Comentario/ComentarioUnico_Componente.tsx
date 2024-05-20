@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Comentario, Perfil_Alumno, Perfil_BD, Perfil_Curso, Perfil_Profesor } from "../../ConexionBD/Definiciones"
+import { Comentario, Perfil_Alumno, Perfil_BD, Perfil_Profesor } from "../../ConexionBD/Definiciones"
 import axios from "axios";
 
 interface prop{

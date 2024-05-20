@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Login from './Vistas/Login/login'
 import { Actividad, Curso, Perfil_Actual, Perfil_BD } from './ConexionBD/Definiciones';
 import ActividadActual from './Vistas/Actividad/ActividadActual';
+import CrearPublicacion from './Componentes/Crear_Publicacion/Crear_Publicacion';
 function App() {
   const[sesion, setSesion]=useState<boolean>(false);
   const[perfil_iniciado, setPerfilIniciado]=useState<boolean>(false);

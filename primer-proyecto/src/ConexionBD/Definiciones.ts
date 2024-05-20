@@ -51,7 +51,7 @@ export interface Perfil_Profesor{
 }
 
 export interface Publicacion{
-    ID_Publicacion:number,
+    ID_Publicacion:number | undefined,
     Titulo: string,
     Categoria:string,
     Contenido: string,
