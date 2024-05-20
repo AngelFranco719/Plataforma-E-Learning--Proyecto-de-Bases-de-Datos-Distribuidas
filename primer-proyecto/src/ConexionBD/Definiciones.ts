@@ -110,6 +110,13 @@ export interface Profesor{
     Especializacion:string
 }
 
+export interface Comentario{
+    Contenido: string,
+    Fecha_Publicacion: Date,
+    ID_PerfilCurso: number,
+    ID_Publicacion: number
+}
+
 export var Perfil_Actual:Perfil_BD;
 export var Alumno_Actual:Alumno; 
 

@@ -1,12 +1,17 @@
-import { CSSProperties } from "react"
-import {Publicacion_Autor } from "../../ConexionBD/Definiciones"
+import { CSSProperties} from "react"
+import { Perfil_Curso, Publicacion_Autor } from "../../ConexionBD/Definiciones"
 import "./Publicaciones.css"
+import ComentarioComponente from "../Comentario/Comentario"
 
 interface prop{
-    publicacion: Publicacion_Autor | undefined
+    publicacion: Publicacion_Autor | undefined,
+    perfilActual: Perfil_Curso | undefined
 }
 
-export default function Publicaciones({publicacion} : prop){
+export default function Publicaciones({publicacion, perfilActual} : prop){
+
+    const primerPerfil=Array.isArray(perfilActual)? perfilActual[0] : perfilActual;
+
     return(
         <>
             <div id="Div_Publicacion">
@@ -17,7 +22,9 @@ export default function Publicaciones({publicacion} : prop){
                 </div>
                 <h2 id="Titulo_Publicacion">{publicacion?.Titulo}:</h2>
                 <p id="Contenido_Publicacion">{publicacion?.Contenido}</p>
+                <ComentarioComponente publicacionActual={publicacion} perfilActual={primerPerfil}></ComentarioComponente>
             </div>
+           
         </>
     )
 }

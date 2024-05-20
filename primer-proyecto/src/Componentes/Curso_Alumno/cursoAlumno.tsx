@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect, useState } from "react";
-import { Actividad, Curso, Publicacion_Autor } from "../../ConexionBD/Definiciones"
+import { Actividad, Curso, Perfil_Curso, Publicacion_Autor } from "../../ConexionBD/Definiciones"
 import "./cursoAlumno.css"
 import Publicaciones from "../Publicacion/Publicaciones";
 import axios from "axios";
@@ -7,10 +7,11 @@ import { NavLink } from "react-router-dom";
 
 interface props{
     curso: Curso,
-    setActividad: React.Dispatch<React.SetStateAction<Actividad| undefined>>
+    setActividad: React.Dispatch<React.SetStateAction<Actividad| undefined>>,
+    perfilActual: Perfil_Curso | undefined
 }
 
-export default function cursoAlumno({curso, setActividad}: props){
+export default function cursoAlumno({curso, setActividad, perfilActual}: props){
     const [publicaciones, setPublicaciones]=useState<Publicacion_Autor[] | undefined>();
     const [actividades, setActividades]=useState<Actividad[] | undefined>();
     const colores:string[][]=[
@@ -19,7 +20,7 @@ export default function cursoAlumno({curso, setActividad}: props){
         ["#F2CCFF", "#C565E6"],
         ["#FDFFB3","#FFCD24"]
     ];
-
+    const primerPerfil=Array.isArray(perfilActual)? perfilActual[0] : perfilActual;
     const color_numero=Math.floor(Math.random()*colores.length)
 
     useEffect(()=>{
@@ -33,7 +34,6 @@ export default function cursoAlumno({curso, setActividad}: props){
 
     const conseguirActividad=(actividadActual:Actividad)=>{
         setActividad(actividadActual);
-        console.log(actividadActual);
     }
 
     return(
@@ -53,7 +53,7 @@ export default function cursoAlumno({curso, setActividad}: props){
                     <h2 id="Titulo_Publicaciones">Publicaciones del Curso:</h2>
                     {publicaciones ? publicaciones.map((publicacion)=>{
                         return(
-                            <Publicaciones key={publicacion.ID_Publicacion} publicacion={publicacion}></Publicaciones>
+                            <Publicaciones key={publicacion.ID_Publicacion} publicacion={publicacion} perfilActual={primerPerfil}></Publicaciones>
                         )
                     }) : <p> No hay publicaciones disponibles. </p>}
                 </div>

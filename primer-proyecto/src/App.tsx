@@ -37,7 +37,7 @@ function App() {
             <Route path="/" element={<Login setSesion={setSesion} setPerfilIniciado={setPerfilIniciado} />} />
           )}
         {sesion && sesionActual && <Route path='/Perfil' element={<Perfil perfil={sesionActual}></Perfil>}/> }
-        {sesion && sesionActual && cursoActual &&<Route path='/Curso' element={<Curso_Vista cursoActual={cursoActual} setActividad={setActividad}></Curso_Vista>}/>}
+        {sesion && sesionActual && cursoActual &&<Route path='/Curso' element={<Curso_Vista perfilActual={sesionActual} cursoActual={cursoActual} setActividad={setActividad}></Curso_Vista>}/>}
         {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Actividad' element={<ActividadActual actividad={actividadActual}></ActividadActual>}/>}
         <Route path='/Crucigrama' Component={Crucigrama}/>
       </Routes>
