@@ -117,6 +117,21 @@ export interface Comentario{
     ID_Publicacion: number
 }
 
+export interface Palabra{
+    Palabra:string,
+    Descripcion:string, 
+    Orientacion:string, 
+    Fila:number, 
+    Columna:number, 
+    Numero:number,
+    ID_Crucigrama:number
+}
+
+export interface Crucigrama_BD{
+    Titulo:string,
+    Descripcion:string
+}
+
 export var Perfil_Actual:Perfil_BD;
 export var Alumno_Actual:Alumno; 
 

@@ -37,8 +37,6 @@ export default function cursoAlumno({curso, setActividad, perfilActual}: props){
         setActividad(actividadActual);
     }
 
-    console.log(primerPerfil);
-
     return(
         <>
         <div id="Div_Principal">

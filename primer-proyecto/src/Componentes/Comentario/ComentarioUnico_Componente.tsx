@@ -10,9 +10,6 @@ export default function ComentarioUnico_Compontente({comentario}:prop){
     const [autor, setAutor]=useState<Perfil_BD[]>();
     const [informacionAutor, setInformacionAutor]=useState<Perfil_Alumno[] | Perfil_Profesor[]>(); 
     const primerComentario=Array.isArray(comentario)? comentario[0] : comentario;
-
-    console.log(informacionAutor);
-
     useEffect(()=>{
         axios.get(`/api/Perfil-Curso?id_perfilcurso=${primerComentario.ID_PerfilCurso}`).then((respuesta)=>{
             setAutor(respuesta.data);

@@ -175,6 +175,7 @@ app.post('/api/Publicacion',(req, res)=>{
     const {Titulo, Contenido, Categoria, ID_PerfilCurso}=req.body;
     connection.query("INSERT INTO Publicación (Titulo, Contenido, Categoria, ID_PerfilCurso) VALUES (?,?,?,?)",[Titulo, Contenido, Categoria, ID_PerfilCurso], (error,resultado)=>{
         if(error){
+            console.log(error);
             return res.status(500).json({error});
         }
         else{
@@ -195,6 +196,68 @@ app.get('/api/Comentario', (req,res)=>{
             res.json(resultados);
         })
     }
+})
+
+app.get('/api/Crucigrama',(req,res)=>{
+    if(req.query.titulo){
+        const titulo=req.query.titulo; 
+        connection.query("SELECT ID_Crucigrama from Crucigrama WHERE Titulo=?",[titulo], (err, results)=>{
+            if(err){
+                res.status(500).json({err}); 
+                return;
+            }
+            res.json(results); 
+        })
+    }
+    if(req.query.id_crucigrama){
+        const id_crucigrama=req.query.id_crucigrama; 
+        connection.query("SELECT *FROM Crucigrama WHERE ID_Crucigrama=?",[id_crucigrama],(error, resultados)=>{
+            if(error){
+                res.status(500).json({error});
+                return;
+            }
+            res.json(resultados);
+        })
+    }
+})
+
+app.post('/api/Crucigrama',(req, res)=>{
+    const {Titulo, Descripcion}=req.body;
+    connection.query("INSERT INTO Crucigrama (Titulo, Descripcion) VALUES (?,?)",[Titulo,Descripcion],(err,results)=>{
+        if(err){
+            return res.status(500).json({err});
+        }
+        else{
+            console.log("Insert creado con exito")
+        }
+        res.json(results);
+    })
+})
+
+app.get('/api/Palabra', (req, res)=>{
+    if(req.query.id_crucigrama){
+        const ID_Crucigrama=req.query.id_crucigrama; 
+        connection.query("SELECT *FROM Palabra WHERE ID_Crucigrama=?",[ID_Crucigrama],(error, resultado)=>{
+            if(error){
+                res.status(500).json({error}); 
+                return; 
+            }
+            res.json(resultado);
+        });
+    }
+})
+
+app.post('/api/Palabra',(req,res)=>{
+    const {Palabra, Descripcion, Orientacion, Fila, Columna, Numero, ID_Crucigrama}=req.body;
+    connection.query("INSERT INTO Palabra (Palabra, Descripcion, Orientacion, Fila, Columna, Numero, ID_Crucigrama) VALUES (?,?,?,?,?,?,?)"
+,[Palabra, Descripcion, Orientacion,Fila,Columna,Numero,ID_Crucigrama],(err,resultado)=>{
+    if(err){
+        return res.status(500).json({err});
+    }else{
+        console.log("Insert creado con exito")
+    }
+    res.json(resultado);
+})
 })
 
 app.listen(PUERTO, ()=>{

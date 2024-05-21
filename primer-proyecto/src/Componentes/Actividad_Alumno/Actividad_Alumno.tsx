@@ -1,24 +1,28 @@
 import "./Actividad_Alumno.css"
 import Calificaciones from "../Calificaciones/Calificaciones";
 import { Actividad } from "../../ConexionBD/Definiciones";
+import { NavLink } from "react-router-dom";
 
 interface prop{
     actividad: Actividad
 }
 
+let Crucigrama=false; 
+
 export default function Actividad_Alumno({actividad}:prop){
     const evaluar_color=()=>{
-        if(actividad.Tipo=="Crucigrama") return("#6114AE");
+        if(actividad.Tipo=="Crucigrama"){
+            Crucigrama=true; 
+            return("#6114AE");
+        } 
     }
     
     const FormatoFecha=(Fecha_s:string)=>{
-        console.log(Fecha_s);
         const Fecha=new Date(Fecha_s)
         const año=String(Fecha.getFullYear());
         const mes=String(Fecha.getMonth()+1).padStart(2,'0');
         const dia=String(Fecha.getDate()).padStart(2,'0');
         const fechaFinal=`${dia}/${mes}/${año}`;
-        console.log(fechaFinal)
         return fechaFinal;
     }
 
@@ -31,6 +35,9 @@ export default function Actividad_Alumno({actividad}:prop){
                     <div className="Div_Etiquetas">
                         <div className="Etiqueta_Categoria_Actividad" style={{backgroundColor: evaluar_color()}}>{actividad.Tipo}</div>
                         <div className="Etiqueta_Categoria_Actividad">{actividad.Dificultad}</div>
+                        <div className="Etiqueta_Categoria_Actividad">
+                            <NavLink to={"/Crucigrama"}>Crucigrama</NavLink>
+                        </div>
                     </div>
                     <div id="Div_Actividad_Informacion">
                     <h1 className="Titulos_Actividad">Descripción:</h1>
