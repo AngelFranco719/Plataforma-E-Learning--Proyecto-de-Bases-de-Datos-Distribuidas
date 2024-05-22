@@ -1,0 +1,238 @@
+#Div_Examen{
+    margin-top: 100px;
+    height: 84vh;
+    width: 99vw;
+}
+#Titulo_Vista_Examen{
+    margin-left: 50px;
+}
+#Div_CrearExamen{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+#Informacion_Examen{
+    grid-column: 2;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.Bloque_Informacion{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.TituloInformacion{
+    font-size: 20px;
+    margin-right: 20px;
+}
+.Input_InformacionExamen{
+    width: 250px;
+    height: 25px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.Textarea_InformacionExamen{
+    width: 300px;
+    height: 50px;
+    font-size: 15px;
+    resize: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.Button_Examen{
+    margin-left: 150px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#Input_Inciso{
+    width: 70px;
+    margin-left: 20px;
+}
+.Summary_Examen{
+    margin-left: 150px;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-style: solid;
+    width: fit-content;
+    padding: 5px;
+    border-width: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.Div_Summary_Evaluacion{
+    text-align: center;
+    margin-top: 5px;
+}
+.Div_Summary_Evaluacion:hover{
+    text-decoration: underline;
+    text-decoration-color: blueviolet;
+}
+#Div_Opciones_Prev{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 450px;
+    margin-top: 10px;
+    min-height: 50px;
+    height: fit-content;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding-bottom: 5px;
+}
+
+#Label_Opciones_Prev{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    margin-top: 5px;
+}
+#Mostrar_Prev_Examen{
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 30px;
+    border-color: #D2D2D2;
+    overflow: auto;
+}
+.Details_Prev_Preguntas{
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    width: fit-content;
+    padding: 10px;
+    padding-right: 20px;
+    border-radius: 10px;
+    border-color: #AEAEAE;
+    cursor: pointer;
+}
+.Div_Details_Prev{
+    margin-left: 50px;
+    margin-top: 5px;
+}
+#ResolverExamen_DIV{
+    height: 89%;
+    width: 99%;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+#Encabezado_Examen{
+    height: 100%;
+    width: 100%;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+    border-color: #C8C8C8;
+}
+#NombreExamen{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:white; 
+    font-size: 20px;
+    height: 50px;
+    width: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    background-color: #750EC1;
+    margin-left: 40px;
+}
+.Div_Resolver_Info{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin-left: 10px;
+    border-style: solid;
+    border-width: 1px;
+    min-height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    border-color: #C8C8C8;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#Calificacion_Resolver{
+   margin-left: 80px;
+}
+#Pregunta_Resolver{
+    margin-top: 10px;
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
+    background-color: #C37BFF;
+    border-radius: 20px;
+}
+#Pregunta_Contenido{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 900px;
+    height: 150px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+#Pregunta_h2{
+    text-align: center;
+}
+#Opciones_Div{
+    display: flex;
+    width: 1000px;
+    margin: 0 auto; 
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.Div_Opcion{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 300px;
+    margin-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: fit-content;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+.H2_Opcion{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+.H2_Opcion:hover{
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
+#EnviarCalificacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:white;
+    cursor:pointer;
+    font-size: 25px;
+    background-color: #9D14B0;
+    height: 50px;
+    width: 300px;
+    margin-top: 20px;
+    border-radius: 20px;
+}

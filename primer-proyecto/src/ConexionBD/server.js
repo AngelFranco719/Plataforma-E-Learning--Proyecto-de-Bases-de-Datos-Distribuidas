@@ -260,6 +260,105 @@ app.post('/api/Palabra',(req,res)=>{
 })
 })
 
+app.post('/api/Examen',(req, res)=>{
+    const {Titulo, Descripcion}=req.body;
+    connection.query("INSERT INTO Examen (Titulo, Descripcion) VALUES (?,?)",[Titulo,Descripcion], (err,resultado)=>{
+        if(err){
+            return res.status(500).json({err});
+        }
+        else{
+            console.log("Insert creado con exito")
+        }
+        res.json(resultado);
+    })
+})
+
+app.get('/api/Examen',(req,res)=>{
+    if(req.query.titulo){
+        const titulo=req.query.titulo;
+        connection.query("SELECT ID_Examen FROM Examen WHERE Titulo=?",[titulo],(err,respuesta)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(respuesta); 
+        })
+    }
+    if(req.query.id_examen){
+        const id_examen=req.query.id_examen;
+        connection.query("SELECT *FROM Examen WHERE ID_Examen=?",[id_examen],(err,resultado)=>{
+            if(err){
+                res.status(500).json({err});
+                return; 
+            }
+            res.json(resultado);
+        })
+    }
+});
+
+app.post('/api/Pregunta',(req,res)=>{
+    const {Pregunta, Numero, ID_Examen}=req.body;
+    connection.query("INSERT INTO Pregunta (Pregunta, Numero, ID_Examen) VALUES (?,?,?)",[Pregunta,Numero,ID_Examen],(err,resultado)=>{
+        if(err){
+            return res.status(500).json({err});
+        }
+        else{
+            console.log("Insert Creado con Exito");
+        }
+        res.json(resultado);
+    })
+});
+
+app.get('/api/Pregunta', (req, res)=>{
+    if(req.query.pregunta){
+        const pregunta=req.query.pregunta;
+        connection.query("SELECT ID_Pregunta FROM Pregunta WHERE Pregunta=?",[pregunta], (err,resultado)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(resultado);
+        })
+    }
+    if(req.query.id_examen){
+        const id_examen=req.query.id_examen;
+        connection.query("SELECT *FROM Pregunta WHERE ID_Examen=?",[id_examen],(err,resultado)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(resultado);
+        })
+    }
+})
+
+app.get('/api/Opcion',(req,res)=>{
+    if(req.query.id_pregunta){
+        const id_pregunta=req.query.id_pregunta;
+        connection.query("SELECT *FROM Opcion WHERE ID_Pregunta=?",[id_pregunta],(err, resultado)=>{
+            if(err){
+                res.status(500).json({err});
+                return;
+            }
+            res.json(resultado);
+        })
+    }
+})
+
+app.post('/api/Opcion',(req,res)=>{
+    const {Contenido, Evaluacion, Inciso, ID_Pregunta}=req.body;
+    connection.query("INSERT INTO Opcion (Contenido, Evaluacion, Inciso, ID_Pregunta) VALUES (?,?,?,?)",
+    [Contenido, Evaluacion, Inciso, ID_Pregunta],(err, resultado)=>{
+        if(err){
+            return res.status(500).json({err});
+        }
+        else{
+            console.log("Insert Creado con Exito");
+        }
+        res.json(resultado);
+    })
+})
+
 app.listen(PUERTO, ()=>{
     console.log(`SERVIDOR CORRIENDO EN EL PUERTO: ${PUERTO}` );
 });

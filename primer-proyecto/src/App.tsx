@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import Login from './Vistas/Login/login'
 import { Actividad, Curso, Perfil_Actual, Perfil_BD } from './ConexionBD/Definiciones';
 import ActividadActual from './Vistas/Actividad/ActividadActual';
-import CrearPublicacion from './Componentes/Crear_Publicacion/Crear_Publicacion';
+import Examen from './Vistas/Examen/Examen';
 function App() {
   const[sesion, setSesion]=useState<boolean>(false);
   const[perfil_iniciado, setPerfilIniciado]=useState<boolean>(false);
@@ -41,6 +41,7 @@ function App() {
         {sesion && sesionActual && cursoActual &&<Route path='/Curso' element={<Curso_Vista perfilActual={sesionActual} cursoActual={cursoActual} setActividad={setActividad}></Curso_Vista>}/>}
         {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Actividad' element={<ActividadActual actividad={actividadActual}></ActividadActual>}/>}
         <Route path='/Crucigrama' Component={Crucigrama}/>
+        <Route path='/Examen' Component={Examen}/>
       </Routes>
     </Router>
 

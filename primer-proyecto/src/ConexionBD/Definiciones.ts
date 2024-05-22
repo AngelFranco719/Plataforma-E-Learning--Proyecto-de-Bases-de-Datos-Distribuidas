@@ -132,6 +132,25 @@ export interface Crucigrama_BD{
     Descripcion:string
 }
 
+export interface Examen{
+    Titulo:string,
+    Descripcion:string
+}
+
+export interface Pregunta{
+    ID_Pregunta:number | null,
+    Pregunta: string,
+    Numero: number,
+    ID_Examen:number
+}
+
+export interface Opcion{
+    Contenido:string,
+    Evaluacion: string,
+    Inciso: string,
+    ID_Pregunta: number
+}
+
 export var Perfil_Actual:Perfil_BD;
 export var Alumno_Actual:Alumno; 
 
