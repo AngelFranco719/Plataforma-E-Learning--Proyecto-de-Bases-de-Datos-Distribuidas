@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect, useState } from "react";
-import { Actividad, Curso, Perfil_Curso, Publicacion_Autor } from "../../ConexionBD/Definiciones"
+import { Actividad, Curso, Perfil_BD, Perfil_Curso, Publicacion_Autor } from "../../ConexionBD/Definiciones"
 import "./cursoAlumno.css"
 import Publicaciones from "../Publicacion/Publicaciones";
 import axios from "axios";
@@ -15,6 +15,7 @@ interface props{
 export default function cursoAlumno({curso, setActividad, perfilActual}: props){
     const [publicaciones, setPublicaciones]=useState<Publicacion_Autor[] | undefined>();
     const [actividades, setActividades]=useState<Actividad[] | undefined>();
+    const [perfil, setPerfil]=useState<Perfil_BD>(); 
     const colores:string[][]=[
         ["#DCFCFF","#24E3C0"],
         ["#FFD8C5"," #FF7664"],
@@ -32,6 +33,19 @@ export default function cursoAlumno({curso, setActividad, perfilActual}: props){
             setActividades(resultado.data);
         })
     },[])
+
+    useEffect(()=>{
+        if(perfilActual){
+            axios.get(`/api/Perfiles?id_perfil=${perfilActual.ID_Perfil}`).then(resultado=>{
+                console.log(resultado.data);
+                setPerfil(resultado.data[0]); 
+            })
+        }
+    },[perfilActual])
+
+    useEffect(()=>{
+        console.log(perfil); 
+    },[perfil])
 
     const conseguirActividad=(actividadActual:Actividad)=>{
         setActividad(actividadActual);
@@ -53,6 +67,9 @@ export default function cursoAlumno({curso, setActividad, perfilActual}: props){
                 <div id="Div_Publicaciones">
                     <h2 id="Titulo_Publicaciones">Publicaciones del Curso:</h2>
                     {primerPerfil ? <CrearPublicacion usuario={primerPerfil}></CrearPublicacion> : undefined}
+                    {perfil && perfil.Tipo_Perfil=="Profesor"? <div id="CrearActividad_Button">
+                        <NavLink to={'/CrearActividad'}>Crear Actividad</NavLink>
+                    </div> : undefined}
                     {publicaciones ? publicaciones.map((publicacion)=>{
                         return(
                             <Publicaciones key={publicacion.ID_Publicacion} publicacion={publicacion} perfilActual={primerPerfil}></Publicaciones>
@@ -61,14 +78,14 @@ export default function cursoAlumno({curso, setActividad, perfilActual}: props){
                 </div>
                 <div id="Div_Actividades">
                     <h2 id="Titulo_Actividades">Actividades:</h2>
-                    {actividades? actividades.map((actividad)=>{
+                    {(actividades? actividades.map((actividad)=>{
                         return(
                             <div key={actividad.ID_Actividad} style={{marginTop: "10px"} as CSSProperties}>
                                 <NavLink to={"/Actividad"} className="Nombre_Actividad" onClick={()=>conseguirActividad(actividad)}>{actividad.Titulo}.</NavLink>
                                 <br></br>
                             </div>    
                         )
-                    }) : undefined}
+                    }) : undefined)}
                 </div>
             </div>
         </>

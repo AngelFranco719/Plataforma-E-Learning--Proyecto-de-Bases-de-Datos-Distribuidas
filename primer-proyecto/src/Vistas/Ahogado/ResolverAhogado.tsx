@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react"
 import "./Ahogado.css"
 import Muñeco from "./Muñeco"
-import { Ahogado, Concepto} from "../../ConexionBD/Definiciones"
+import { Actividad, Ahogado, Calificacion, Concepto, Perfil_BD, Perfil_Curso} from "../../ConexionBD/Definiciones"
 import axios from "axios"
 import InputAhogado from "./InputAhogado"
 
 interface prop{
     ID_Ahogado:number,
+    actividad:Actividad, 
+    perfil:Perfil_BD | undefined
 }
 
-export default function ResolverAhogado({ID_Ahogado}:prop){
+export default function ResolverAhogado({ID_Ahogado, actividad, perfil}:prop){
     const [error, setError]=useState<number>(0);
     const [acierto, setAcierto]=useState<number>(0);
     const [ahogado, setAhogado]=useState<Ahogado[]>();
     const [concepto, setConcepto]=useState<Concepto[]>(); 
     const [caracteres, setCaracteres]=useState<string[]>(); 
     const [status, setStatus]=useState<string>(); 
+    const [pc, setPC]=useState<Perfil_Curso>(); 
+    const primer_actividad=Array.isArray(actividad)? actividad[0] : actividad;
+    const primer_perfil=Array.isArray(perfil)? perfil[0] : perfil;
 
     useEffect(()=>{
         axios.get(`/api/Ahogado?id_ahogado=${ID_Ahogado}`).then(respuesta=>{
@@ -53,6 +58,44 @@ export default function ResolverAhogado({ID_Ahogado}:prop){
         }
     },[acierto])
 
+    useEffect(()=>{
+        if(status){
+            axios.get(`/api/Perfil-Curso?id_curso=${primer_actividad.ID_Curso}&&id_perfil=${primer_perfil.ID_Perfil}`).then(respuesta=>{
+                setPC(respuesta.data[0]);
+            })
+        }
+    },[status])
+    useEffect(()=>{
+        if(pc){
+            const fechaDeHoy=new Date(); 
+            const año: number = fechaDeHoy.getFullYear();
+            const mes: number = fechaDeHoy.getMonth() + 1;
+            const día: number = fechaDeHoy.getDate();
+            let calificacion; 
+            if(status=="Ganaste") calificacion=10;
+            else calificacion=6;
+            let retroalimentacion; 
+            if(calificacion<7){
+                retroalimentacion="Debes estudiar un poco más";
+            }
+            else{
+                retroalimentacion="Muy Bien! Sigue así."
+            }
+
+            const nueva_calificacion:Calificacion={
+                Fecha_Asignacion: `${año}-${mes}-${día}`,
+                Resultado: calificacion,
+                Retroalimentación: retroalimentacion,
+                ID_Actividad:primer_actividad.ID_Actividad,
+                ID_PerfilCurso: primer_perfil.ID_Perfil
+            }
+            axios.post('/api/Calificacion',nueva_calificacion).then(respuesta=>{
+                alert("Se registró la calificación"+respuesta);
+            }).catch(resultado=>{
+                alert("No se pudo registrar la calificación"+resultado);
+            })
+        }
+    },[pc])
 
     return(
         <>

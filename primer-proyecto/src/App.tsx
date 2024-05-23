@@ -11,6 +11,7 @@ import { Actividad, Curso, Perfil_Actual, Perfil_BD } from './ConexionBD/Definic
 import ActividadActual from './Vistas/Actividad/ActividadActual';
 import Examen from './Vistas/Examen/Examen';
 import Ahogado from './Vistas/Ahogado/Ahogado';
+import CrearActividad from './Vistas/CrearActividad/CrearActividad';
 function App() {
   const[sesion, setSesion]=useState<boolean>(false);
   const[perfil_iniciado, setPerfilIniciado]=useState<boolean>(false);
@@ -40,10 +41,14 @@ function App() {
           )}
         {sesion && sesionActual && <Route path='/Perfil' element={<Perfil perfil={sesionActual}></Perfil>}/> }
         {sesion && sesionActual && cursoActual &&<Route path='/Curso' element={<Curso_Vista perfilActual={sesionActual} cursoActual={cursoActual} setActividad={setActividad}></Curso_Vista>}/>}
-        {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Actividad' element={<ActividadActual actividad={actividadActual}></ActividadActual>}/>}
-        <Route path='/Crucigrama' Component={Crucigrama}/>
-        <Route path='/Examen' Component={Examen}/>
-        <Route path='/Ahogado' Component={Ahogado}/>
+        {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Actividad' element={<ActividadActual perfil={sesionActual} actividad={actividadActual}></ActividadActual>}/>}
+        {sesion && sesionActual && cursoActual && actividadActual && <Route path='/ResolverCrucigrama' element={<Crucigrama perfil={sesionActual} actividad={actividadActual}></Crucigrama>}></Route>}
+        {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Examen' element={<Examen perfil={sesionActual} actividad={actividadActual}></Examen>}></Route>}
+        {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Ahogado' element={<Ahogado perfil={sesionActual} actividad={actividadActual}></Ahogado>}></Route>}
+        {sesion && sesionActual && cursoActual && <Route path='/CrearActividad' element={<CrearActividad curso={cursoActual}></CrearActividad>}></Route>}
+        <Route path='/Crucigrama' element={<Crucigrama perfil={undefined} actividad={undefined}></Crucigrama>}></Route>
+        <Route path='/CrearExamen' element={<Examen perfil={undefined} actividad={undefined}></Examen>}></Route>
+        <Route path='/CrearAhogado' element={<Ahogado perfil={undefined} actividad={undefined}></Ahogado>}></Route>
       </Routes>
     </Router>
 

@@ -1,18 +1,34 @@
 import "./Actividad_Alumno.css"
 import Calificaciones from "../Calificaciones/Calificaciones";
-import { Actividad } from "../../ConexionBD/Definiciones";
+import { Actividad, Perfil_BD } from "../../ConexionBD/Definiciones";
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface prop{
-    actividad: Actividad
+    actividad: Actividad,
+    perfil: Perfil_BD
 }
 
-let Crucigrama=false; 
+export default function Actividad_Alumno({actividad, perfil}:prop){
+    const [crucigrama, setCrucigrama]=useState<boolean>(false);
+    const [examen, setExamen]=useState<boolean>(false);
+    const [ahogado, setAhogado]=useState<boolean>(false);
 
-export default function Actividad_Alumno({actividad}:prop){
-    const evaluar_color=()=>{
+
+    useEffect(()=>{
         if(actividad.Tipo=="Crucigrama"){
-            Crucigrama=true; 
+            setCrucigrama(true);
+        }
+        if(actividad.Tipo=="Cuestionario"){
+            setExamen(true);
+        }
+        if(actividad.Tipo=="Ahogado"){
+            setAhogado(true);
+        }
+    },[]);
+
+    const evaluar_color=()=>{
+        if(actividad.Tipo=="Crucigrama"){ 
             return("#6114AE");
         } 
     }
@@ -35,9 +51,6 @@ export default function Actividad_Alumno({actividad}:prop){
                     <div className="Div_Etiquetas">
                         <div className="Etiqueta_Categoria_Actividad" style={{backgroundColor: evaluar_color()}}>{actividad.Tipo}</div>
                         <div className="Etiqueta_Categoria_Actividad">{actividad.Dificultad}</div>
-                        <div className="Etiqueta_Categoria_Actividad">
-                            <NavLink to={"/Crucigrama"}>Crucigrama</NavLink>
-                        </div>
                     </div>
                     <div id="Div_Actividad_Informacion">
                     <h1 className="Titulos_Actividad">Descripción:</h1>
@@ -47,13 +60,13 @@ export default function Actividad_Alumno({actividad}:prop){
                         <div className="Etiqueta_Categoria_Actividad" id="Fecha">Hasta: {FormatoFecha(actividad.Fecha_limite)}</div>
                     </div>
                     <div id="Boton_Iniciar">
-                        Iniciar la Actividad
+                        <NavLink to={crucigrama? "/ResolverCrucigrama" : (examen? "/Examen" : "/Ahogado")}>Iniciar Actividad</NavLink>
                     </div>
                     </div>  
                 </div>
                 
                 <div id="Div_Calificacion">
-                    <Calificaciones></Calificaciones>
+                    <Calificaciones actividad={actividad} perfil={perfil}></Calificaciones>
                 </div>
             </div>
         </>

@@ -26,9 +26,9 @@ export default function ComentarioComponente({publicacionActual, perfilActual}: 
         };
         axios.post('/api/Comentario',informacion)
         .then(respuesta =>{
-            console.log("Comentario creado: "+respuesta.data)
+            alert("Comentario creado: "+respuesta.data)
         }).catch(respuesta=>{
-            console.log("No se pudo crear el comentario: "+respuesta.data);
+            alert("No se pudo crear el comentario: "+respuesta.data);
         })
         setNuevoComentario(informacion);
     }

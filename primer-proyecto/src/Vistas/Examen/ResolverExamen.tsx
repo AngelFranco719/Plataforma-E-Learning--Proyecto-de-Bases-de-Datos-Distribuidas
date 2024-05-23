@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react"
 import "./Examen.css"
-import { Examen, Opcion, Pregunta } from "../../ConexionBD/Definiciones"
+import { Actividad, Calificacion, Examen, Opcion, Perfil_BD, Perfil_Curso, Pregunta } from "../../ConexionBD/Definiciones"
 import axios from "axios";
 
 interface props{
     id_examen:number; 
+    actividad:Actividad | undefined,
+    perfil:Perfil_BD | undefined
 }
 
-export default function ResolverExamen({id_examen}:props){
+export default function ResolverExamen({id_examen, actividad, perfil}:props){
     const [examen, setExamen]=useState<Examen[]>(); 
     const [preguntas, setPreguntas]=useState<Pregunta[]>();
     const [opciones, setOpciones]=useState<Opcion[]>(); 
@@ -15,6 +17,9 @@ export default function ResolverExamen({id_examen}:props){
     const [correctas, setCorrectas]=useState<number>(0);
     const [terminado, setTerminado]=useState<boolean>(false); 
     const [calificación, setCalificacion]=useState<number>(0); 
+    const [pc, setPC]=useState<Perfil_Curso>();
+    const primer_perfil=Array.isArray(perfil)? perfil[0] : perfil;
+    const primer_actividad=Array.isArray(actividad)? actividad[0] : actividad;
     useEffect(()=>{
         axios.get(`/api/Examen?id_examen=${id_examen}`).then(respuesta=>{
             setExamen(respuesta.data);
@@ -64,6 +69,43 @@ export default function ResolverExamen({id_examen}:props){
         }
     },[terminado])
 
+    useEffect(()=>{
+        if(calificación){
+            axios.get(`/api/Perfil-Curso?id_curso=${primer_actividad.ID_Curso}&&id_perfil=${primer_perfil.ID_Perfil}`).then(respuesta=>{
+                setPC(respuesta.data[0]);
+            })
+        }
+    },[calificación])
+
+    useEffect(()=>{
+        if(pc){
+            const fechaDeHoy=new Date(); 
+            const año: number = fechaDeHoy.getFullYear();
+            const mes: number = fechaDeHoy.getMonth() + 1;
+            const día: number = fechaDeHoy.getDate();
+            let retroalimentacion; 
+            if(calificación<7){
+                retroalimentacion="Debes estudiar un poco más";
+            }
+            else{
+                retroalimentacion="Muy Bien! Sigue así."
+            }
+
+            const nueva_calificacion:Calificacion={
+                Fecha_Asignacion: `${año}-${mes}-${día}`,
+                Resultado: calificación,
+                Retroalimentación: retroalimentacion,
+                ID_Actividad:primer_actividad.ID_Actividad,
+                ID_PerfilCurso: primer_perfil.ID_Perfil
+            }
+            axios.post('/api/Calificacion',nueva_calificacion).then(respuesta=>{
+                alert("Se registró la calificación"+respuesta);
+            }).catch(resultado=>{
+                alert("No se pudo registrar la calificación"+resultado);
+            })
+        }
+    },[pc])
+
     return(
         <>
             <div id="ResolverExamen_DIV">
@@ -90,18 +132,7 @@ export default function ResolverExamen({id_examen}:props){
                                         <h2 className="H2_Opcion">{`${opcion.Inciso} ${opcion.Contenido}`}</h2>
                                     </div>
                                 )
-                            }
-                            else{
-                                if(index==opciones.length-1){
-                                    return(
-                                        <>
-                                            <div id="EnviarCalificacion">
-                                                Enviar Calificacion
-                                            </div>    
-                                        </>
-                                    )
-                                }
-                            }
+                            }                          
                         }) : undefined}
                     </div>
                 </div>

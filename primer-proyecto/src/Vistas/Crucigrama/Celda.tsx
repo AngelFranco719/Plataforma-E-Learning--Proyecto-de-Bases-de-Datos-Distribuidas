@@ -64,7 +64,7 @@ export default function Celda({fila, columna, seleccionado, setCeldaActivada, le
             <div id="Numero_palabra">
                 <label>{numero? numero : ""}</label>
             </div>
-            <input ref={InputLetraRef} readOnly={resolver? false : true} onChange={()=>estadoLetra()}  className="Input_Celda" type="text"></input>
+            <input maxLength={1} ref={InputLetraRef} readOnly={resolver? false : true} onChange={()=>estadoLetra()}  className="Input_Celda" type="text"></input>
         </div>
         </>
     )

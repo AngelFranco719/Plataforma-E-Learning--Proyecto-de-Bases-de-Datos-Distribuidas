@@ -98,7 +98,10 @@ export interface Actividad{
     Fecha_limite:string,
     Descripcion: string,
     Dificultad: string,
-    Tipo: string
+    Tipo: string,
+    ID_Crucigrama:number | undefined,
+    ID_Examen: number | undefined,
+    ID_Ahogado: number | undefined
 }
 
 export interface Profesor{
@@ -161,6 +164,14 @@ export interface Concepto{
     Concepto: string, 
     Descripcion: string, 
     ID_Ahogado: number
+}
+
+export interface Calificacion{
+    Fecha_Asignacion: string, 
+    Resultado: number,
+    Retroalimentación: string, 
+    ID_Actividad:number
+    ID_PerfilCurso:number
 }
 
 

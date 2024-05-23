@@ -18,6 +18,10 @@ export default function Curso_Vista({cursoActual, setActividad, perfilActual}:pr
             setPerfil_CursoActual(resultado.data);
         })
     },[])
+
+    useEffect(()=>{
+        console.log(perfil_cursoActual); 
+    },[perfil_cursoActual])
     
     return(
         <div id="Div_Curso">

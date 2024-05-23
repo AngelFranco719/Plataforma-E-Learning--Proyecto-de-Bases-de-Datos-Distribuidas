@@ -119,3 +119,23 @@
     text-decoration: underline;
     text-decoration-color: blue;
 }
+#CrearActividad_Button{
+    height: 50px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 25px;
+}
+#CrearActividad_Button:hover{
+    text-decoration: underline;
+    text-decoration-color: orange;
+}

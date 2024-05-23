@@ -2,10 +2,15 @@ import { useEffect, useState } from "react"
 import CrearCrucigrama from "./Crear_Crucigrama"
 import "./Crucigrama.css"
 import Cuadricula from "./Cuadricula"
-import { Palabra } from "../../ConexionBD/Definiciones";
+import { Actividad, Palabra, Perfil_BD } from "../../ConexionBD/Definiciones";
 import ResolverCrucigrama from "./Resolver_Crucigrama";
 
-export default function Crucigrama(){ 
+interface prop{
+    actividad:Actividad | undefined,
+    perfil: Perfil_BD | undefined
+}
+
+export default function Crucigrama({actividad, perfil}: prop){ 
     const [coordenadas, setCoordenadas]=useState<{fila: number, columna:number} | null>(null);
     const [nuevaPalabra, setNuevaPalabra]=useState<Palabra | null>(null); 
     const [conjuntoPalabras, setConjuntoPalabras]=useState<Palabra[] | null>(null); 
@@ -27,7 +32,8 @@ export default function Crucigrama(){
                     </Cuadricula>
                 </div>
                 <div id="Div_Interaccion_Crucigrama">
-                    <ResolverCrucigrama setConjuntoPalabras={setConjuntoPalabras} setResolver={setResolver} Correctas={correctas}></ResolverCrucigrama>
+                    {perfil && actividad? <ResolverCrucigrama perfil={perfil} actividad={actividad} ID_Crucigrama={actividad && actividad.ID_Crucigrama? actividad.ID_Crucigrama: 0} setConjuntoPalabras={setConjuntoPalabras} setResolver={setResolver} Correctas={correctas}></ResolverCrucigrama> : 
+                    <CrearCrucigrama coordenadas={coordenadas} setNuevaPalabra={setNuevaPalabra}></CrearCrucigrama>}
                 </div>
             </div>
         </>

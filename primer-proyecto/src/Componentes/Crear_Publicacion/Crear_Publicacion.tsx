@@ -45,9 +45,9 @@ export default function CrearPublicacion({usuario}:prop){
             }
             console.log(nuevaPublicacion);
             axios.post('/api/Publicacion',nuevaPublicacion).then((respuesta)=>{
-                console.log("Comentario Creado"+respuesta.data)
+                alert("Comentario Creado"+respuesta.data)
             }).catch((respuesta)=>{
-                console.log("Error"+respuesta)
+                alert("Error"+respuesta)
             });
         }
         

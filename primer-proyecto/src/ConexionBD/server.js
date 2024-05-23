@@ -145,6 +145,46 @@ app.get('/api/Actividad',(req,res)=>{
     }
 })
 
+app.post('/api/Actividad/Crucigrama',(req,res)=>{
+    const {ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Crucigrama}=req.body;
+    connection.query("INSERT INTO Actividad (ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Crucigrama) VALUES (?,?,?,?,?,?,?,?)",
+[ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Crucigrama],(error, resp)=>{
+    if(error){
+        return res.status(500).json({error});
+    }
+    else{
+        console.log("Insert creado con Exito");
+    }
+    res.json(resp);
+})
+})
+app.post('/api/Actividad/Examen',(req,res)=>{
+    const {ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Examen}=req.body;
+    connection.query("INSERT INTO Actividad (ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Examen) VALUES (?,?,?,?,?,?,?,?)",
+[ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Examen],(error, resp)=>{
+    if(error){
+        return res.status(500).json({error});
+    }
+    else{
+        console.log("Insert creado con Exito");
+    }
+    res.json(resp);
+})
+})
+app.post('/api/Actividad/Ahogado',(req,res)=>{
+    const {ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Ahogado}=req.body;
+    connection.query("INSERT INTO Actividad (ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Ahogado) VALUES (?,?,?,?,?,?,?,?)",
+[ID_Curso, Titulo, Fecha_Publicacion, Fecha_limite, Descripcion, Dificultad, Tipo, ID_Ahogado],(error, resp)=>{
+    if(error){
+        return res.status(500).json({error});
+    }
+    else{
+        console.log("Insert creado con Exito");
+    }
+    res.json(resp);
+})
+})
+
 app.get('/api/Publicacion_Autor',(req, res)=>{
     if(req.query.id_curso){
         const id_curso=req.query.id_curso;
@@ -209,7 +249,7 @@ app.get('/api/Crucigrama',(req,res)=>{
             res.json(results); 
         })
     }
-    if(req.query.id_crucigrama){
+    else if(req.query.id_crucigrama){
         const id_crucigrama=req.query.id_crucigrama; 
         connection.query("SELECT *FROM Crucigrama WHERE ID_Crucigrama=?",[id_crucigrama],(error, resultados)=>{
             if(error){
@@ -219,6 +259,16 @@ app.get('/api/Crucigrama',(req,res)=>{
             res.json(resultados);
         })
     }
+    else{
+        connection.query("SELECT ID_Crucigrama FROM crucigrama ORDER BY ID_Crucigrama DESC LIMIT 1;",(err, resul)=>{
+            if(err){
+                res.status(500).json({err}); 
+                return; 
+            }
+            res.json(resul);
+        })
+    }
+    
 })
 
 app.post('/api/Crucigrama',(req, res)=>{
@@ -284,7 +334,7 @@ app.get('/api/Examen',(req,res)=>{
             res.json(respuesta); 
         })
     }
-    if(req.query.id_examen){
+    else if(req.query.id_examen){
         const id_examen=req.query.id_examen;
         connection.query("SELECT *FROM Examen WHERE ID_Examen=?",[id_examen],(err,resultado)=>{
             if(err){
@@ -292,6 +342,15 @@ app.get('/api/Examen',(req,res)=>{
                 return; 
             }
             res.json(resultado);
+        })
+    }
+    else {
+        connection.query("SELECT ID_Examen FROM Examen ORDER BY ID_Examen DESC LIMIT 1;",(err, resul)=>{
+            if(err){
+                res.status(500).json({err}); 
+                return; 
+            }
+            res.json(resul);
         })
     }
 });
@@ -382,13 +441,22 @@ app.get('/api/Ahogado',(req,res)=>{
             res.json(resultado);
         })
     }
-    if(req.query.id_ahogado){
+    else if(req.query.id_ahogado){
         const id_ahogado=req.query.id_ahogado;
         connection.query("SELECT *FROM Ahogado WHERE ID_Ahogado=?",[id_ahogado],(error, resultado)=>{
             if(error){
                 res.status(500).json({error});
             }
             res.json(resultado);
+        })
+    }
+    else{
+        connection.query("SELECT ID_Ahogado FROM Ahogado ORDER BY ID_Ahogado DESC LIMIT 1;",(err, resul)=>{
+            if(err){
+                res.status(500).json({err}); 
+                return; 
+            }
+            res.json(resul);
         })
     }
 })
@@ -417,6 +485,35 @@ app.get('/api/Concepto',(req, res)=>{
             }
             res.json(resultado);
         })
+    }
+})
+
+app.post('/api/Calificacion',(req,res)=>{
+    const {Fecha_Asignacion, Resultado, Retroalimentacion, ID_Actividad, ID_PerfilCurso}=req.body;
+    connection.query("INSERT INTO Calificacion (Fecha_Asignacion, Resultado, Retroalimentación, ID_Actividad,ID_PerfilCurso) VALUES(?,?,?,?,?)",
+    [Fecha_Asignacion, Resultado, Retroalimentacion, ID_Actividad,ID_PerfilCurso],(err,resultado)=>{
+        if(err){
+            console.log(err); 
+            return res.status(500).json({err});
+        }
+        else{
+            console.log("Insert Creado con Exito")
+        }
+        res.json(resultado);
+    })
+})
+
+app.get('/api/Calificacion',(req, res)=>{
+    if(req.query.id_actividad && req.query.id_perfilcurso){
+       const id_actividad=req.query.id_actividad;
+       const id_perfilcurso=req.query. id_perfilcurso;
+       connection.query("SELECT * FROM Calificacion WHERE ID_Actividad=? AND ID_PerfilCurso=?",[id_actividad,id_perfilcurso],(error, resultado)=>{
+            if(error){
+                res.status(500).json({error});
+                return; 
+            }
+            res.json(resultado);
+       }) 
     }
 })
 
