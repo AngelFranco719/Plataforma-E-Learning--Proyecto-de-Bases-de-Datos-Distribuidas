@@ -10,6 +10,7 @@ import Login from './Vistas/Login/login'
 import { Actividad, Curso, Perfil_Actual, Perfil_BD } from './ConexionBD/Definiciones';
 import ActividadActual from './Vistas/Actividad/ActividadActual';
 import Examen from './Vistas/Examen/Examen';
+import Ahogado from './Vistas/Ahogado/Ahogado';
 function App() {
   const[sesion, setSesion]=useState<boolean>(false);
   const[perfil_iniciado, setPerfilIniciado]=useState<boolean>(false);
@@ -42,6 +43,7 @@ function App() {
         {sesion && sesionActual && cursoActual && actividadActual && <Route path='/Actividad' element={<ActividadActual actividad={actividadActual}></ActividadActual>}/>}
         <Route path='/Crucigrama' Component={Crucigrama}/>
         <Route path='/Examen' Component={Examen}/>
+        <Route path='/Ahogado' Component={Ahogado}/>
       </Routes>
     </Router>
 

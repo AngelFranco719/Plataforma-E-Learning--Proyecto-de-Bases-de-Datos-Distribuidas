@@ -151,6 +151,19 @@ export interface Opcion{
     ID_Pregunta: number
 }
 
+export interface Ahogado{
+    ID_Ahogado: number | null,
+    Titulo: string, 
+    Descripcion: string
+}
+
+export interface Concepto{
+    Concepto: string, 
+    Descripcion: string, 
+    ID_Ahogado: number
+}
+
+
 export var Perfil_Actual:Perfil_BD;
 export var Alumno_Actual:Alumno; 
 

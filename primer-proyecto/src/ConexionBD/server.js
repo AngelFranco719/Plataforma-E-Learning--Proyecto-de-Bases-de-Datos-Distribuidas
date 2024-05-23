@@ -359,6 +359,67 @@ app.post('/api/Opcion',(req,res)=>{
     })
 })
 
+app.post('/api/Ahogado',(req,res)=>{
+    const {Titulo, Descripcion}=req.body;
+    connection.query("INSERT INTO Ahogado (Titulo, Descripcion) VALUES (?,?)",[Titulo,Descripcion],(err,resultado)=>{
+        if(err){
+            return res.status(500).json({err});
+        } else{
+            console.log("Insert Creado con Exito");
+        }
+        res.json(resultado);
+    })
+})
+
+app.get('/api/Ahogado',(req,res)=>{
+    if(req.query.titulo){
+        const Titulo=req.query.titulo; 
+        connection.query("SELECT ID_Ahogado FROM Ahogado WHERE Titulo=?",[Titulo],(error, resultado)=>{
+            if(error){
+                res.status(500).json({error});
+                return; 
+            }
+            res.json(resultado);
+        })
+    }
+    if(req.query.id_ahogado){
+        const id_ahogado=req.query.id_ahogado;
+        connection.query("SELECT *FROM Ahogado WHERE ID_Ahogado=?",[id_ahogado],(error, resultado)=>{
+            if(error){
+                res.status(500).json({error});
+            }
+            res.json(resultado);
+        })
+    }
+})
+
+app.post('/api/Concepto',(req,res)=>{
+    const {Concepto, Descripcion, ID_Ahogado}=req.body;
+    connection.query("INSERT INTO Concepto (Concepto, Descripcion, ID_Ahogado) VALUES (?,?,?)",[Concepto, Descripcion, ID_Ahogado], (error, respuesta)=>{
+        if(error){
+            res.status(500).json({error});
+            return; 
+        }
+        else{
+            console.log("Insert Creado con Exito");
+        }
+        res.json(respuesta);
+    })
+})
+
+app.get('/api/Concepto',(req, res)=>{
+    if(req.query.id_ahogado){
+        const ID_Ahogado=req.query.id_ahogado;
+        connection.query("SELECT *FROM Concepto WHERE ID_Ahogado=?",[ID_Ahogado],(error, resultado)=>{
+            if(error){
+                res.status(500).json({error});
+                return;
+            }
+            res.json(resultado);
+        })
+    }
+})
+
 app.listen(PUERTO, ()=>{
     console.log(`SERVIDOR CORRIENDO EN EL PUERTO: ${PUERTO}` );
 });
